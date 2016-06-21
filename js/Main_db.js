@@ -10,13 +10,13 @@ window.onload = function () {
 var MQTTBrokerIP = "broker-sandbox.everyware-cloud.com";
 
 // EDC account name; set to that provided in lab instructions
-var accountName = "ethdev";
+var accountName = "accountName";
 
 // MQTT User Name; set to that provided in lab instructions
-var user = "ethdev";
+var user = "username";
 
 // MQTT Password; set to that provided in lab instructions
-var password = "We!come12345";
+var password = "*******";
 
 // RHIoTTagService APP_ID
 var AppId = "org.jboss.rhiot.services.RHIoTTagScanner";
@@ -24,8 +24,8 @@ var AppId = "org.jboss.rhiot.services.RHIoTTagScanner";
 // RHIoTTagService game scores Topic
 var scoresTopic = "gameScores";
 
-// DN2016-GWN of the RHIoTTagServices gateway where N = number of gateway at your table
-var GatewayName = "DN2016-GWZ";
+// Client dashboard name; where N = number of gateway at your table
+var LeaderboardName = "Leaderboard-N";
 
 
 
@@ -35,7 +35,7 @@ var ByteBuf = dcodeIO.ByteBuffer;
 var pbMsg = ProtoBuf.loadProto("package kuradatatypes;option java_package= \"org.eclipse.kura.core.message.protobuf\";option java_outer_classname = \"KuraPayloadProto\";message KuraPayload {message KuraMetric {enum ValueType{DOUBLE = 0;FLOAT = 1;INT64 = 2;INT32 = 3;BOOL = 4;STRING = 5;BYTES = 6;}required string name = 1;required ValueType type = 2;optional double double_value = 3;optional float float_value = 4;optional int64 long_value = 5;optional int32 int_value = 6;optional bool bool_value = 7;optional string string_value = 8;optional bytes bytes_value = 9;}message KuraPosition{required double latitude=1;required double longitude=2;optional double altitude=3;optional double precision=4;optional double heading=5;optional double speed = 6;optional int64 timestamp=7;optional int32 satellites=8;optional int32 status=9;}optional int64 timestamp = 1;optional KuraPosition position  = 2;extensions 3 to 4999;repeated KuraMetric metric=5000;optional bytes body= 5001;}")
         .build("kuradatatypes.KuraPayload");
 
-var client = new Paho.MQTT.Client(MQTTBrokerIP, 8080, "ClientDashboard-" + GatewayName);
+var client = new Paho.MQTT.Client(MQTTBrokerIP, 8080, "ClientDashboard-" + LeaderboardName);
 
 var entries = [];
 
